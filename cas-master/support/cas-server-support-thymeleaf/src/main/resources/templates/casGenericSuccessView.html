@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+	<meta charset="utf-8">
+    <title th:text="#{screen.success.header}">Generic Success View</title>
+    <link href="../../static/css/cas.css" rel="stylesheet" th:remove="tag"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+<main role="main" class="container mt-3 mb-3">
+    <div layout:fragment="content" class="row">
+        <div class="w-100 m-auto mdc-card p-4 text-justify">
+            
+            <h2 th:utext="#{screen.success.header}">Log In Successful</h2>
+            
+            <p th:utext="#{screen.success.success(${authentication.principal.id})}">You, <strong>username</strong>, have successfully logged into the Central Authentication Service.
+                However, you are seeing this page because CAS does not know about your target destination and how
+                to get you there. Examine the authentication request again and make sure a target service/application that is authorized and registered with CAS is specified.</p>
+			
+			
+			<section id="menu_aplicativos">
+				<div class="col-xs-12">
+					<div class="d-flex justify-content-center">
+					
+							<div class="card-group">
+								<!-- Primer enlace hacia aplicativo -->
+							  	<div class="card" style="width: 18rem;">
+							  	    <img th:src="@{/images/moodle1.png}" class="card-img-top" alt="Moodle"/>
+							  		<div class="card-body">
+								    	<h5 class="card-title">Mis aulas</h5>
+								    	<p class="card-text"></p>
+								    	<div class="text-center">
+								    		<a class="btn btn-primary" style="color:white"  th:href="@{http:148.207.151.208}">Ir a Moodle</a>
+								    	</div>
+								  	</div>
+								</div>
+								
+								<!-- Segundo enlace hacia aplicativo -->
+								<div class="card" style="width: 18rem;">
+							  	    <div class="text-center">
+							  	    	<img th:src="@{/images/drupal.png}" class="card-img-top2" alt="Drupal"/>
+							  		</div>
+							  		<div class="card-body">
+								    	<h5 class="card-title">Encuestas</h5>
+								    	<p class="card-text"></p>
+								    	<div class="text-center">
+								    		<a class="btn btn-primary" style="color:white "  th:href="@{http:148.207.151.194}">Ir a Drupal</a>
+								    	</div>
+								  	</div>
+								</div>
+								<!-- Tercer enlace hacia aplicativo -->
+								<div class="card" style="width: 18rem;">
+							  	    <div class="text-center">
+							  	    	<img th:src="@{/images/LogoUnADM2_2.png}" class="card-img-top3" alt="Sige"/>
+							  		</div>
+							  		<div class="card-body">
+								    	<h5 class="card-title" style="text-align:left; font-size: 1.22rem;">Sistema de Gestión Escolar</h5>
+								    	<p class="card-text"></p>
+								    	<div class="text-center">
+								    		<a class="btn btn-primary" style="color:white"  th:href="@{https://sige.unadmexico.mx:28182/sige/}">Ir a SIGE</a>
+								    	</div>
+								  	</div>
+								</div>
+							</div>
+
+					</div>					
+				</div>
+			</section>
+			
+			
+			<section id="menuenlaces">
+	            <div class="container">
+	            	<br>
+	            	<h6>Ligas de interés:</h6>
+		            <div>
+			            <ol>
+						  <li><a th:href="@{https://www.unadmexico.mx/images/descargables/CalendarioAcademicoLic%20TSU_2020-2.pdf}">Calendario académico Lic y TSU</a></li>
+						  <li><a th:href="@{https://www.unadmexico.mx/tr%C3%A1mites-y-servicios/bolsa-de-trabajo}">Bolsa de trabajo</a></li>
+						  <li><a th:href="@{https://www.unadmexico.mx/tr%C3%A1mites-y-servicios/titulacion}">Titulación</a></li>
+						</ol>
+					</div>
+				</div>
+			</section>
+
+            <p th:utext="#{screen.success.security}">
+                When you are finished, for security reasons, please <a href="logout">log out</a> and exit your web browser.
+            </p>
+
+            
+        </div>
+        
+
+        <script type="text/javascript" th:inline="javascript">
+            let div = document.querySelector('#divPrincipalAttributes');
+            new mdc.dataTable.MDCDataTable(div);
+
+           
+            $(document).ready(function () {
+                tabify(mdc);
+            });
+
+
+            function tabify(material) {
+                var elm = document.getElementById('attribute-tabs');
+                var tabs = material.tabBar.MDCTabBar.attachTo(elm);
+
+                tabs.listen('MDCTabBar:activated', function (ev) {
+                    var index = ev.detail.index;
+                    $('.attribute-tab').addClass('d-none');
+                    $('#attribute-tab-' + index).removeClass('d-none');
+                });
+
+                tabs.foundation.adapter.activateTabAtIndex(0);
+
+                return tabs;
+            }
+               
+        </script>
+    </div>
+</main>
+</body>
+</html>
